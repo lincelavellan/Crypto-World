@@ -1,0 +1,49 @@
+{
+  "name": "news-mosaic",
+  "version": "1.0.0",
+  "description": "Популярные запросы и новости с изображениями",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/server.js",
+    "watch:scss": "sass --watch src/scss/main.scss:dist/styles.css --style=expanded",
+    "watch:js": "node watch-build.js main",
+    "watch:html": "node watch-html.js",
+    "serve": "live-server dist --port=5000 --watch=dist",
+    "copy:images": "mkdir -p dist/images && (cp -r src/images/* dist/images/ 2>/dev/null || true)",
+    "copy:components": "cp -r src/components dist/components",
+    "copy:server": "cp src/server.js dist/server.js",
+    "copy:js": "mkdir -p dist/js && cp -r src/js/* dist/js/",
+    "watch:server": "chokidar 'src/server.js' -c 'npm run copy:server'",
+    "build": "node build.js && npx sass src/scss/main.scss dist/styles.css && node build-html.js && npm run copy:images && npm run copy:components && npm run copy:server",
+    "dev:server": "nodemon --watch dist/server.js --delay 1000 dist/server.js",
+    "dev": "npm-run-all --parallel dev:server watch:html watch:images watch:scss watch:js",
+    "watch:images": "chokidar 'src/images/**/*' -c 'npm run copy:images'",
+    "dev:all": "npm-run-all --parallel dev:server watch:scss watch:js watch:html watch:images watch:server"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.2",
+    "google-trends-api": "^4.9.2",
+    "html2canvas": "^1.4.1",
+    "luxon": "^3.7.2",
+    "node-telegram-bot-api": "^0.66.0",
+    "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "chokidar-cli": "^3.0.0",
+    "esbuild": "^0.18.0",
+    "esbuild-plugin-raw": "^0.3.0",
+    "live-server": "^1.2.2",
+    "nodemon": "^3.1.10",
+    "npm-run-all": "^4.1.5",
+    "posthtml": "^0.16.6",
+    "posthtml-cli": "^0.10.0",
+    "posthtml-include": "^1.7.4",
+    "sass": "^1.75.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

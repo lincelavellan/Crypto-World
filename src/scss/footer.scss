@@ -1,0 +1,71 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+   width: 90vw;
+   height: 134px;
+ 
+    &__line {
+        flex: 1;
+        height: 1px;
+        opacity: 0.6;
+
+        &--1 {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+        }
+        &--2 {
+        background: linear-gradient(90deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+        }
+    }
+
+    &__btn {
+       position: relative;
+
+        div {
+             display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 262px;
+            height: 58px;
+            background: url(images/btn-bg-2.png) no-repeat center/cover;
+            color: #FFF;
+            text-align: center;
+            leading-trim: both;
+            text-edge: cap;
+            font-family: "IBM Plex Sans";
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            transition: all 0.3s ease;
+            position: relative;
+
+            &:hover {
+                cursor: url("images/cursor.svg"), pointer;
+                background: url(images/btn-bg-hov.png) no-repeat center/cover;
+            }
+    }
+}
+}
+
+.night {
+    .footer__btn {
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(color(srgb 0 0 0), transparent);
+            width: 90%;
+            height: 90%;
+        }
+
+         &:hover {
+             &:before {
+                    background: none;
+             }
+            }
+    }
+}
