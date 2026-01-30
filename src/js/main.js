@@ -179,3 +179,52 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(digitsBlock);
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll(
+        '.instruction__block, .instruction__title'
+    );
+
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    animatedElements.forEach(el => observer.observe(el));
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const list = document.querySelector('.crypto__list');
+    const items = document.querySelectorAll('.crypto__item');
+
+    if (!list || !items.length) return;
+
+    items.forEach((item, index) => {
+        item.style.setProperty('--i', index);
+    });
+
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    list.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.3
+        }
+    );
+
+    observer.observe(list);
+});

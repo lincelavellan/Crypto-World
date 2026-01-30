@@ -155,7 +155,7 @@ img {
   border: 0;
 }
 
-h1 {
+h1, h2, h3 {
   margin: 0;
 }
 
@@ -165,6 +165,10 @@ p {
 }
 
 .btn {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.btn span {
   display: flex;
   height: 56px;
   padding: 19px 40px;
@@ -178,6 +182,32 @@ p {
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
+  z-index: 1;
+  transition: all 0.3s ease;
+  background: var(--main-color);
+}
+.btn:before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: -4px;
+  right: -4px;
+  border-radius: 16px;
+  opacity: 0.5;
+  filter: blur(6px);
+  z-index: -1;
+  background: linear-gradient(72deg, var(--main-color) 0%, var(--second-color) 50%, var(--main-color) 100%);
+  transition: all 0.3s ease;
+}
+.btn:hover span {
+  transform: translateY(-5px) !important;
+}
+.btn:hover:before {
+  top: -8px;
+  bottom: -8px;
+  left: -8px;
+  right: -8px;
 }
 
 .main-width {
@@ -187,8 +217,12 @@ p {
   margin: 0 auto;
 }
 
-body[data-theme="1xbet"] .btn {
-  background: #38F;
+body[data-theme="1xbet"] {
+  background: #021A35;
+  --main-color: #38F;
+  --second-color: #00D4FF;
+}
+body[data-theme="1xbet"] .btn span {
   box-shadow: 0 10px 30px -10px rgba(51, 136, 255, 0.4);
 }
 body[data-theme="1xbet"] .logo--1xbet {
@@ -196,10 +230,6 @@ body[data-theme="1xbet"] .logo--1xbet {
 }
 body[data-theme="1xbet"] .logo--melbet {
   display: none;
-}
-body[data-theme="1xbet"] .progress-bar {
-  background: #38F;
-  box-shadow: 0 0 20px 0 #38F;
 }
 body[data-theme="1xbet"] .top-block {
   background: url(images/top-bg.webp) top center no-repeat;
@@ -210,20 +240,6 @@ body[data-theme="1xbet"] .top-block__title--1xbet {
 }
 body[data-theme="1xbet"] .top-block__title--melbet {
   display: none;
-}
-body[data-theme="1xbet"] .top-block__label i {
-  background: #00D4FF;
-}
-body[data-theme="1xbet"] .top-block__title span {
-  color: #38F;
-}
-body[data-theme="1xbet"] .top-block__link {
-  background: #38F;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
-}
-body[data-theme="1xbet"] .top-block__link:hover {
-  background: linear-gradient(135deg, #38F 0%, #00D4FF 100%);
 }
 
 header {
@@ -311,14 +327,20 @@ header {
   height: 100%;
   width: 0%;
   transition: width 0.1s ease;
+  background: var(--main-color);
+  box-shadow: 0 0 20px 0 var(--main-color);
 }
 
 .top-block {
   height: 100vh;
+  min-height: 630px;
   padding-top: 97px;
+  padding-bottom: 49px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 98;
 }
 .top-block__container {
   display: flex;
@@ -336,12 +358,17 @@ header {
   border: 1px solid rgba(51, 136, 255, 0.15);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fade-left 0.8s ease-out forwards;
+  animation-delay: 0.1s;
 }
 .top-block__label i {
   display: block;
   width: 8px;
   height: 8px;
   border-radius: 100%;
+  background: var(--second-color);
 }
 .top-block__label span {
   color: #FFF;
@@ -362,9 +389,16 @@ header {
   font-weight: 700;
   line-height: 68.4px;
   letter-spacing: -3.6px;
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fade-left 0.8s ease-out forwards;
+  animation-delay: 0.25s;
 }
 .top-block__title div {
   color: #FFF;
+}
+.top-block__title span {
+  color: var(--main-color);
 }
 .top-block__text {
   color: rgba(255, 255, 255, 0.8);
@@ -374,6 +408,16 @@ header {
   font-weight: 400;
   line-height: 29px;
   max-width: 505px;
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fade-left 0.8s ease-out forwards;
+  animation-delay: 0.4s;
+}
+.top-block__btn {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fade-up 0.8s ease-out forwards;
+  animation-delay: 0.6s;
 }
 .top-block__digits {
   margin-top: 36px;
@@ -403,6 +447,102 @@ header {
   letter-spacing: 0.6px;
   text-transform: uppercase;
 }
+.top-block__cryptos {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  overflow: hidden;
+  padding: 13px 0;
+}
+.top-block__cryptos-track {
+  display: flex;
+  width: max-content;
+  animation: crypto-marquee 25s linear infinite;
+}
+.top-block__cryptos-line {
+  display: flex;
+  align-items: center;
+}
+.top-block__cryptos-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  position: relative;
+}
+.top-block__cryptos-item:before {
+  content: "";
+  display: flex;
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.top-block__cryptos-item label {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  background: var(--main-color);
+  color: #FFF;
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 15px;
+}
+.top-block__cryptos-name {
+  color: #FFF;
+  font-family: "IBM Plex Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+.top-block__cryptos-price {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "IBM Plex Sans";
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+.top-block__cryptos-percents {
+  font-family: "IBM Plex Sans";
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.top-block__cryptos-percents:before {
+  content: "";
+  display: flex;
+  width: 10px;
+  height: 10px;
+}
+.top-block__cryptos-percents--top {
+  color: #05DF72;
+}
+.top-block__cryptos-percents--top:before {
+  background: url(images/top-icon.webp) center no-repeat;
+}
+.top-block__cryptos-percents--bottom {
+  color: #FF6467;
+}
+.top-block__cryptos-percents--bottom:before {
+  background: url(images/bottom-icon.webp) center no-repeat;
+}
 .top-block__link {
   position: fixed;
   right: 75px;
@@ -413,9 +553,35 @@ header {
   width: 64px;
   height: 64px;
   border-radius: 100%;
+  background: var(--main-color);
   animation: floatPulse 3s ease-in-out infinite;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+.top-block__link:hover {
+  background: linear-gradient(135deg, var(--main-color) 0%, var(--second-color) 100%);
 }
 
+@keyframes fade-left {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes crypto-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 @keyframes floatPulse {
   0% {
     transform: translateY(0);
@@ -438,25 +604,6 @@ header {
     box-shadow: 0 4px 12px rgba(51, 136, 255, 0.3), 0 8px 24px rgba(51, 136, 255, 0.2);
   }
 }
-.pulsing-btn {
-  width: 64px;
-  height: 64px;
-  background: #38F;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 0;
-  z-index: 1;
-  /* Легкая тень для кнопки */
-  box-shadow: 0 4px 20px rgba(51, 136, 255, 0.4);
-  transition: transform 0.3s ease;
-  animation: lanternFloat 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
 /* Анимация подъема кнопки (только вверх) */
 @keyframes lanternFloat {
   0%, 100% {
@@ -615,6 +762,259 @@ header {
     height: 80px;
     opacity: 0.6;
   }
+}
+.instruction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 0;
+  gap: 64px;
+}
+.instruction__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 78px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 78px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
+}
+.instruction__title span:first-child {
+  background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.4) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 92px;
+}
+.instruction__title span:last-child {
+  color: var(--main-color);
+}
+.instruction__title.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.instruction__blocks {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 48px;
+}
+.instruction__block {
+  display: flex;
+  align-items: center;
+  gap: 235px;
+  border-radius: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
+}
+.instruction__block.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.instruction__block--left {
+  padding: 50px 90px 50px 200px;
+}
+.instruction__block--left .instruction__content {
+  order: 1;
+}
+.instruction__block--left .instruction__image {
+  order: 0;
+  transform-origin: left bottom;
+}
+.instruction__block--left .instruction__image:hover {
+  transform: rotate(-6deg) translateY(-4px);
+}
+.instruction__block--right {
+  padding: 50px 200px 50px 90px;
+}
+.instruction__block--right .instruction__content {
+  order: 0;
+}
+.instruction__block--right .instruction__image {
+  order: 1;
+  transform-origin: right bottom;
+}
+.instruction__block--right .instruction__image:hover {
+  transform: rotate(6deg) translateY(-4px);
+}
+.instruction__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  flex: 1;
+}
+.instruction__content label {
+  font-family: "IBM Plex Sans";
+  font-size: 140px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140px;
+  opacity: 0.05;
+  position: absolute;
+  left: -15px;
+  top: -60px;
+  color: var(--main-color);
+}
+.instruction__block-title {
+  color: #FFF;
+  font-family: "IBM Plex Sans";
+  font-size: 29.4px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 37.5px;
+  letter-spacing: -0.75px;
+}
+.instruction__text {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "IBM Plex Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29.25px;
+}
+.instruction__links {
+  display: flex;
+  align-items: center;
+  margin-top: 28px;
+  gap: 16px;
+}
+.instruction__image {
+  width: 260px;
+  display: inline-block;
+  transform-origin: center bottom;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.crypto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 0;
+  gap: 32px;
+}
+.crypto__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.9px;
+}
+.crypto__title span:first-child {
+  color: #FFF;
+}
+.crypto__title span:last-child {
+  color: var(--main-color);
+}
+.crypto__text {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 15.5px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 12px;
+}
+.crypto__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 18px;
+}
+.crypto__list.is-visible .crypto__item {
+  opacity: 1;
+  transform: scale(1);
+}
+.crypto__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 138px;
+  height: 110px;
+  border-radius: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition-delay: calc(var(--i) * 0.08s);
+  will-change: transform, opacity;
+  position: relative;
+}
+.crypto__item:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  background-color: rgba(51, 136, 255, 0.125);
+  transition: all 0.3s ease;
+}
+.crypto__item:hover {
+  transform: translateY(-5px) scale(1.05) !important;
+  transition-delay: 0s !important;
+}
+.crypto__item:hover:before {
+  opacity: 0.5;
+}
+.crypto__item label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  color: #FFF;
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+.crypto__item div {
+  color: #FFF;
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+.crypto__subtitle {
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 13.7px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 /*# sourceMappingURL=styles.css.map */

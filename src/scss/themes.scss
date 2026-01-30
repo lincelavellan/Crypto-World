@@ -1,7 +1,13 @@
 body[data-theme="1xbet"] {
-    .btn  {
-        background: #38F;
+        
+    background: #021A35;
+    --main-color: #38F;
+    --second-color: #00D4FF;
+
+    .btn  { 
+        span {
         box-shadow: 0 10px 30px -10px rgba(51, 136, 255, 0.40);
+        }
     }
 
     .logo--1xbet {
@@ -9,11 +15,6 @@ body[data-theme="1xbet"] {
     }
     .logo--melbet {
         display: none;
-    }
-
-    .progress-bar {
-        background: #38F;
-        box-shadow: 0 0 20px 0 #38F;
     }
 
     .top-block {
@@ -25,26 +26,6 @@ body[data-theme="1xbet"] {
         }
         &__title--melbet {
             display: none;
-        }
-
-        &__label i {
-           background: #00D4FF;
-        }
-
-        &__title {
-            span {
-                color: #38F;
-            }
-        }
-
-        &__link {
-            background: #38F;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transition: all .3s ease;
-
-            &:hover {
-                background: linear-gradient(135deg, #38F 0%, #00D4FF 100%); 
-            }
         }
     }
 }

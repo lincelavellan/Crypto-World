@@ -1,9 +1,13 @@
 .top-block {
     height: 100vh;
+    min-height: 630px;
     padding-top: 97px;
+    padding-bottom: 49px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 98;
 
     &__container {
         display: flex;
@@ -22,12 +26,17 @@
         border: 1px solid rgba(51, 136, 255, 0.15);
         background: rgba(255, 255, 255, 0.10);
         backdrop-filter: blur(6px);
+        opacity: 0;
+        transform: translateX(-40px);
+        animation: fade-left 0.8s ease-out forwards;
+        animation-delay: 0.1s;
 
         i {
             display: block;
             width: 8px;
             height: 8px;
             border-radius: 100%;
+            background: var(--second-color);
         }
 
         span {
@@ -51,9 +60,17 @@
         font-weight: 700;
         line-height: 68.4px;
         letter-spacing: -3.6px;
+        opacity: 0;
+        transform: translateX(-40px);
+        animation: fade-left 0.8s ease-out forwards;
+        animation-delay: 0.25s;
 
         div {
             color: #FFF;
+        }
+
+        span {
+          color: var(--main-color);
         }
     }
 
@@ -65,7 +82,19 @@
         font-weight: 400;
         line-height: 29px;
         max-width: 505px;
+        opacity: 0;
+        transform: translateX(-40px);
+        animation: fade-left 0.8s ease-out forwards;
+        animation-delay: 0.4s;
     }
+
+      &__btn {
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fade-up 0.8s ease-out forwards;
+        animation-delay: 0.6s;
+      }
+
 
     &__digits {
         margin-top: 36px;
@@ -99,6 +128,115 @@
         }
     }
 
+    &__cryptos {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      overflow: hidden;
+      padding: 13px 0;
+
+      &-track {
+          display: flex;
+          width: max-content;
+          animation: crypto-marquee 25s linear infinite;
+      }
+
+      &-line {
+        display: flex;
+        align-items: center;
+      }
+
+      &-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 12px;
+        position: relative;
+
+        &:before {
+          content: '';
+          display: flex;
+          width: 4px;
+          height: 4px;  
+          border-radius: 100%;
+          background: rgba(255, 255, 255, 0.20);
+          position: absolute;
+          left: -2px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        label {
+          display: flex;
+          width: 24px;
+          height: 24px;
+          border-radius: 100%;
+          justify-content: center;
+          align-items: center;
+          background: var(--main-color);
+          color: #FFF;
+          text-align: center;
+          font-family: "IBM Plex Sans";
+          font-size: 10px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 15px;
+        }
+      }
+
+      &-name {
+        color: #FFF;
+        font-family: "IBM Plex Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+      }
+
+      &-price {
+        color: rgba(255, 255, 255, 0.70);
+        font-family: "IBM Plex Sans";
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+      }
+
+      &-percents {
+        font-family: "IBM Plex Sans";
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; 
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+         &:before {
+            content: '';
+            display: flex;
+            width: 10px;
+            height: 10px;
+         }
+
+        &--top {
+          color: #05DF72;
+
+          &:before {
+            background: url(images/top-icon.webp) center no-repeat;
+          }
+        }
+        &--bottom {
+          color: #FF6467;
+
+          &:before {
+            background: url(images/bottom-icon.webp) center no-repeat;
+          }
+        }
+      }
+    }
+
     &__link {
         position: fixed;
         right: 75px;
@@ -109,9 +247,39 @@
         width: 64px;
         height: 64px;
         border-radius: 100%;
+        background: var(--main-color);
         animation: floatPulse 3s ease-in-out infinite;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        transition: all .3s ease;
+
+          &:hover {
+                background: linear-gradient(135deg, var(--main-color) 0%, var(--second-color) 100%); 
+          }
     }
 }
+
+@keyframes fade-left {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  @keyframes crypto-marquee {
+      from {
+          transform: translateX(0);
+      }
+      to {
+          transform: translateX(-50%);
+      }
+  }
+
 
 @keyframes floatPulse {
   0% {
@@ -151,27 +319,6 @@
       0 4px 12px rgba(51, 136, 255, 0.3),
       0 8px 24px rgba(51, 136, 255, 0.2);
   }
-}
-
-.pulsing-btn {
-  width: 64px;
-  height: 64px;
-  background: #38F;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 0;
-  z-index: 1;
-  
-  /* Легкая тень для кнопки */
-  box-shadow: 0 4px 20px rgba(51, 136, 255, 0.4);
-  transition: transform 0.3s ease;
-
-   animation: lanternFloat 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* Анимация подъема кнопки (только вверх) */

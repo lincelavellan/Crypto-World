@@ -167,7 +167,7 @@ img {
   border: 0;
 }
 
-h1 {
+h1, h2, h3 {
   margin: 0;
 }
 
@@ -177,19 +177,55 @@ p {
 }
 
 .btn {
-  display: flex;
-  height: 56px;
-  padding: 19px 40px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 14px;
-  color: #FFF;
-  text-align: center;
-  font-family: "IBM Plex Sans";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px;
+  position: relative;
+  transition: all .3s ease;
+
+  span {
+      display: flex;
+      height: 56px;
+      padding: 19px 40px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 14px;
+      color: #FFF;
+      text-align: center;
+      font-family: "IBM Plex Sans";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px;
+      z-index: 1;
+      transition: all .3s ease;
+      background: var(--main-color);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    border-radius: 16px;
+    opacity: 0.5;
+    filter: blur(6px);
+    z-index: -1;
+    background: linear-gradient(72deg, var(--main-color) 0%, var(--second-color) 50%, var(--main-color) 100%);
+    transition: all .3s ease;
+  }
+
+   &:hover {
+    span {
+        transform: translateY(-5px) !important;
+      }
+
+      &:before {
+        top: -8px;
+        bottom: -8px;
+        left: -8px;
+        right: -8px;
+      }
+  }
 }
 
 .main-width {
