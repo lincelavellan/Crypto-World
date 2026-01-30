@@ -161,4 +161,38 @@
     );
     observer.observe(list);
   });
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(
+      ".features__top, .features__list, .comparison__top, .comparison__tr, .security__top, .security__list, .faq__top, .faq__item"
+    );
+    if (!elements.length)
+      return;
+    const observer = new IntersectionObserver(
+      (entries, observer2) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer2.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.25
+      }
+    );
+    elements.forEach((el) => observer.observe(el));
+  });
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqItems = document.querySelectorAll(".faq__item");
+    faqItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const isOpen = item.classList.contains("faq__item--open");
+        if (!isOpen) {
+          item.classList.add("faq__item--open");
+        } else {
+          item.classList.remove("faq__item--open");
+        }
+      });
+    });
+  });
 })();
