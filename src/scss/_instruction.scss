@@ -155,3 +155,24 @@
     }
 }
 
+html[dir="rtl"] .instruction__content label {
+    right: -15px;
+    left: auto;
+    text-align: right;
+}
+
+@media (max-width: 1280px) and (min-width: 768px) {
+    .instruction__block {
+            gap: 18vw;
+    }
+
+    .instruction__block--left {
+        padding: 50px 5vw 50px 15vw;
+    }
+    
+    .instruction__block--right {
+        padding: 50px 15vw 50px 5vw;
+    }
+
+
+}

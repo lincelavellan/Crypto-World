@@ -1,6 +1,6 @@
 header {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   top: 0;
   padding: 28px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -150,3 +150,12 @@ header {
   box-shadow: var(--main-color) 0 0 20px;
 }
 
+html[dir="rtl"] .lang-switcher__list {
+  right: auto;
+  left: 0;
+}
+
+html[dir="rtl"] .lang-switcher__option--selected:after {
+  margin-left: 0;
+  margin-right: auto;
+}

@@ -79,15 +79,13 @@
         letter-spacing: 0.7px;
         text-transform: uppercase;
 
-        &:first-child {
-            text-align: left;
-        }
+
         &:nth-child(2) {
             text-align: center;
         } 
 
         &:last-child {
-            text-align: center;
+            text-align: center; 
             color: var(--main-color)
         }
     }

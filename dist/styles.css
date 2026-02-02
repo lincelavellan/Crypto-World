@@ -274,28 +274,6 @@ body[data-theme="1xbet"] .beam-3 {
 body[data-theme="1xbet"] .beam-4 {
   background: radial-gradient(ellipse at center, rgba(51, 136, 255, 0.2) 0%, rgba(51, 136, 255, 0.15) 15%, rgba(51, 136, 255, 0.1) 30%, rgba(51, 136, 255, 0.05) 45%, transparent 60%);
 }
-@keyframes floatPulse {
-  0% {
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(51, 136, 255, 0.3), 0 8px 24px rgba(51, 136, 255, 0.2);
-  }
-  25% {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(51, 136, 255, 0.4), 0 16px 40px rgba(51, 136, 255, 0.3), 0 24px 60px rgba(51, 136, 255, 0.2);
-  }
-  50% {
-    transform: translateY(-12px);
-    box-shadow: 0 12px 28px rgba(51, 136, 255, 0.5), 0 24px 56px rgba(51, 136, 255, 0.4), 0 36px 84px rgba(51, 136, 255, 0.3);
-  }
-  75% {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(51, 136, 255, 0.4), 0 16px 40px rgba(51, 136, 255, 0.3), 0 24px 60px rgba(51, 136, 255, 0.2);
-  }
-  100% {
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(51, 136, 255, 0.3), 0 8px 24px rgba(51, 136, 255, 0.2);
-  }
-}
 body[data-theme="1xbet"] .features__icon, body[data-theme="1xbet"] .security__icon, body[data-theme="1xbet"] .cta__icon {
   background: rgba(51, 136, 255, 0.13);
 }
@@ -357,28 +335,6 @@ body[data-theme=melbet] .beam-3 {
 body[data-theme=melbet] .beam-4 {
   background: radial-gradient(ellipse at center, rgba(255, 152, 0, 0.8) 0%, rgba(255, 152, 0, 0.6) 15%, rgba(255, 152, 0, 0.4) 30%, rgba(255, 152, 0, 0.2) 45%, transparent 60%);
 }
-@keyframes floatPulse {
-  0% {
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3), 0 8px 24px rgba(255, 152, 0, 0.2);
-  }
-  25% {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4), 0 16px 40px rgba(255, 152, 0, 0.3), 0 24px 60px rgba(255, 152, 0, 0.2);
-  }
-  50% {
-    transform: translateY(-12px);
-    box-shadow: 0 12px 28px rgba(255, 152, 0, 0.5), 0 24px 56px rgba(255, 152, 0, 0.4), 0 36px 84px rgba(255, 152, 0, 0.3);
-  }
-  75% {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4), 0 16px 40px rgba(255, 152, 0, 0.3), 0 24px 60px rgba(255, 152, 0, 0.2);
-  }
-  100% {
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3), 0 8px 24px rgba(255, 152, 0, 0.2);
-  }
-}
 body[data-theme=melbet] .features__icon, body[data-theme=melbet] .security__icon, body[data-theme=melbet] .cta__icon {
   background: rgba(245, 196, 0, 0.13);
 }
@@ -400,7 +356,7 @@ body[data-theme=melbet] .footer--melbet {
 
 header {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   top: 0;
   padding: 28px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -530,6 +486,16 @@ header {
   box-shadow: var(--main-color) 0 0 20px;
 }
 
+html[dir=rtl] .lang-switcher__list {
+  right: auto;
+  left: 0;
+}
+
+html[dir=rtl] .lang-switcher__option--selected:after {
+  margin-left: 0;
+  margin-right: auto;
+}
+
 .top-block {
   height: 100vh;
   min-height: 630px;
@@ -657,7 +623,7 @@ header {
 .top-block__cryptos-track {
   display: flex;
   width: max-content;
-  animation: crypto-marquee 25s linear infinite;
+  animation: crypto-marquee-ltr 25s linear infinite;
 }
 .top-block__cryptos-line {
   display: flex;
@@ -753,12 +719,20 @@ header {
   height: 64px;
   border-radius: 100%;
   background: var(--main-color);
-  animation: floatPulse 3s ease-in-out infinite;
+  animation: floatPulse1xbet 3s ease-in-out infinite;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
 }
 .top-block__link:hover {
   background: linear-gradient(135deg, var(--main-color) 0%, var(--second-color) 100%);
+}
+
+html[dir=rtl] .top-block__cryptos-track {
+  animation-name: crypto-marquee-rtl;
+}
+
+body[data-theme=melbet] .top-block__link {
+  animation: floatPulseMelbet 3s ease-in-out infinite;
 }
 
 @keyframes fade-left {
@@ -773,12 +747,64 @@ header {
     transform: translateY(0);
   }
 }
-@keyframes crypto-marquee {
-  from {
+@keyframes crypto-marquee-ltr {
+  0% {
     transform: translateX(0);
   }
-  to {
+  100% {
     transform: translateX(-50%);
+  }
+}
+@keyframes crypto-marquee-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+@keyframes floatPulse1xbet {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(51, 136, 255, 0.3), 0 8px 24px rgba(51, 136, 255, 0.2);
+  }
+  25% {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(51, 136, 255, 0.4), 0 16px 40px rgba(51, 136, 255, 0.3), 0 24px 60px rgba(51, 136, 255, 0.2);
+  }
+  50% {
+    transform: translateY(-12px);
+    box-shadow: 0 12px 28px rgba(51, 136, 255, 0.5), 0 24px 56px rgba(51, 136, 255, 0.4), 0 36px 84px rgba(51, 136, 255, 0.3);
+  }
+  75% {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(51, 136, 255, 0.4), 0 16px 40px rgba(51, 136, 255, 0.3), 0 24px 60px rgba(51, 136, 255, 0.2);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(51, 136, 255, 0.3), 0 8px 24px rgba(51, 136, 255, 0.2);
+  }
+}
+@keyframes floatPulseMelbet {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3), 0 8px 24px rgba(255, 152, 0, 0.2);
+  }
+  25% {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4), 0 16px 40px rgba(255, 152, 0, 0.3), 0 24px 60px rgba(255, 152, 0, 0.2);
+  }
+  50% {
+    transform: translateY(-12px);
+    box-shadow: 0 12px 28px rgba(255, 152, 0, 0.5), 0 24px 56px rgba(255, 152, 0, 0.4), 0 36px 84px rgba(255, 152, 0, 0.3);
+  }
+  75% {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4), 0 16px 40px rgba(255, 152, 0, 0.3), 0 24px 60px rgba(255, 152, 0, 0.2);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3), 0 8px 24px rgba(255, 152, 0, 0.2);
   }
 }
 /* Анимация подъема кнопки (только вверх) */
@@ -1071,6 +1097,23 @@ header {
   will-change: transform;
 }
 
+html[dir=rtl] .instruction__content label {
+  right: -15px;
+  left: auto;
+  text-align: right;
+}
+
+@media (max-width: 1280px) and (min-width: 768px) {
+  .instruction__block {
+    gap: 18vw;
+  }
+  .instruction__block--left {
+    padding: 50px 5vw 50px 15vw;
+  }
+  .instruction__block--right {
+    padding: 50px 15vw 50px 5vw;
+  }
+}
 .crypto {
   display: flex;
   flex-direction: column;
@@ -1123,7 +1166,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 138px;
+  width: calc((100% - 90px) / 6);
   height: 110px;
   border-radius: 14px;
   border-radius: 14px;
@@ -1190,6 +1233,11 @@ header {
   line-height: 20px;
 }
 
+@media (max-width: 1024px) {
+  .crypto__item {
+    width: calc((100% - 54px) / 4);
+  }
+}
 .features {
   display: flex;
   flex-direction: column;
@@ -1331,6 +1379,15 @@ header {
   z-index: 0;
 }
 
+@media (max-width: 1024px) {
+  .features__list {
+    flex-wrap: wrap;
+  }
+  .features__item {
+    width: calc((100% - 32px) / 2);
+    min-width: calc((100% - 32px) / 2);
+  }
+}
 .comparison {
   display: flex;
   flex-direction: column;
@@ -1401,9 +1458,6 @@ header {
   line-height: 20px;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-}
-.comparison__th:first-child {
-  text-align: left;
 }
 .comparison__th:nth-child(2) {
   text-align: center;
@@ -1614,6 +1668,7 @@ header {
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
+  text-align: center;
 }
 .security__item-text {
   color: rgba(255, 255, 255, 0.6);
@@ -1622,6 +1677,7 @@ header {
   font-style: normal;
   font-weight: 400;
   line-height: 22.75px;
+  text-align: center;
 }
 .security__subtitle {
   display: flex;
@@ -1928,6 +1984,7 @@ header {
   font-style: normal;
   font-weight: 400;
   line-height: 22.75px;
+  text-align: center;
 }
 .cta__btn > span {
   gap: 8px;

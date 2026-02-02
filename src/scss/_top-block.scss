@@ -139,7 +139,7 @@
       &-track {
           display: flex;
           width: max-content;
-          animation: crypto-marquee 25s linear infinite;
+          animation: crypto-marquee-ltr 25s linear infinite;
       }
 
       &-line {
@@ -248,7 +248,7 @@
         height: 64px;
         border-radius: 100%;
         background: var(--main-color);
-        animation: floatPulse 3s ease-in-out infinite;
+        animation: floatPulse1xbet 3s ease-in-out infinite;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         transition: all .3s ease;
 
@@ -256,6 +256,15 @@
                 background: linear-gradient(135deg, var(--main-color) 0%, var(--second-color) 100%); 
           }
     }
+}
+
+
+html[dir="rtl"] .top-block__cryptos-track {
+    animation-name: crypto-marquee-rtl;
+}
+
+body[data-theme="melbet"] .top-block__link {
+  animation: floatPulseMelbet 3s ease-in-out infinite;
 }
 
 @keyframes fade-left {
@@ -271,15 +280,100 @@
         transform: translateY(0);
     }
 }
-  @keyframes crypto-marquee {
-      from {
-          transform: translateX(0);
-      }
-      to {
-          transform: translateX(-50%);
-      }
-  }
+@keyframes crypto-marquee-ltr {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
 
+@keyframes crypto-marquee-rtl {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(50%);
+    }
+}
+
+
+@keyframes floatPulse1xbet {
+  0% {
+    transform: translateY(0);
+    box-shadow: 
+      0 4px 12px rgba(51, 136, 255, 0.3),
+      0 8px 24px rgba(51, 136, 255, 0.2);
+  }
+  
+  25% {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 8px 20px rgba(51, 136, 255, 0.4),
+      0 16px 40px rgba(51, 136, 255, 0.3),
+      0 24px 60px rgba(51, 136, 255, 0.2);
+  }
+  
+  50% {
+    transform: translateY(-12px);
+    box-shadow: 
+      0 12px 28px rgba(51, 136, 255, 0.5),
+      0 24px 56px rgba(51, 136, 255, 0.4),
+      0 36px 84px rgba(51, 136, 255, 0.3);
+  }
+  
+  75% {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 8px 20px rgba(51, 136, 255, 0.4),
+      0 16px 40px rgba(51, 136, 255, 0.3),
+      0 24px 60px rgba(51, 136, 255, 0.2);
+  }
+  
+  100% {
+    transform: translateY(0);
+    box-shadow: 
+      0 4px 12px rgba(51, 136, 255, 0.3),
+      0 8px 24px rgba(51, 136, 255, 0.2);
+  }
+}
+
+    @keyframes floatPulseMelbet {
+        0% {
+            transform: translateY(0);
+            box-shadow: 
+            0 4px 12px rgba(255, 152, 0, 0.3),
+            0 8px 24px rgba(255, 152, 0, 0.2);
+        }  
+        25% {
+            transform: translateY(-8px);
+            box-shadow: 
+            0 8px 20px rgba(255, 152, 0, 0.4),
+            0 16px 40px rgba(255, 152, 0, 0.3),
+            0 24px 60px rgba(255, 152, 0, 0.2);
+        }  
+        50% {
+            transform: translateY(-12px);
+            box-shadow: 
+            0 12px 28px rgba(255, 152, 0, 0.5),
+            0 24px 56px rgba(255, 152, 0, 0.4),
+            0 36px 84px rgba(255, 152, 0, 0.3);
+        }  
+        75% {
+            transform: translateY(-8px);
+            box-shadow: 
+            0 8px 20px rgba(255, 152, 0, 0.4),
+            0 16px 40px rgba(255, 152, 0, 0.3),
+            0 24px 60px rgba(255, 152, 0, 0.2);
+        }  
+        100% {
+            transform: translateY(0);
+            box-shadow: 
+            0 4px 12px rgba(255, 152, 0, 0.3),
+            0 8px 24px rgba(255, 152, 0, 0.2);
+        }
+        }  
 
 
 /* Анимация подъема кнопки (только вверх) */

@@ -162,3 +162,13 @@
         z-index: 0;
     }
 }
+
+@media (max-width: 1024px) {
+    .features__list {
+        flex-wrap: wrap;
+    }
+    .features__item {
+        width: calc((100% - 32px) / 2);
+        min-width: calc((100% - 32px) / 2);
+    }
+}

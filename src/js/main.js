@@ -1,4 +1,6 @@
 
+import { i18n } from './i18n/index.js'
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
         const target = document.querySelector(anchor.getAttribute('href'))
@@ -62,13 +64,18 @@ function applyLang(lang) {
 
   // localStorage
   localStorage.setItem(STORAGE_KEY, lang)
-
-  // если есть i18n
-  // changeLanguage(lang)
+    // update i18n module
+    try {
+        i18n.setLanguage(lang)
+    } catch (e) {
+        // ignore if DOM not ready
+    }
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    // init i18n once DOM is ready
+    try { i18n.init() } catch (e) {}
   const progressBar = document.getElementById('progressBar');
   let isScrolling = false;
   

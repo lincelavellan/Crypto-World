@@ -79,46 +79,6 @@ body[data-theme="1xbet"] {
         );
     }
 
-    @keyframes floatPulse {
-  0% {
-    transform: translateY(0);
-    box-shadow: 
-      0 4px 12px rgba(51, 136, 255, 0.3),
-      0 8px 24px rgba(51, 136, 255, 0.2);
-  }
-  
-  25% {
-    transform: translateY(-8px);
-    box-shadow: 
-      0 8px 20px rgba(51, 136, 255, 0.4),
-      0 16px 40px rgba(51, 136, 255, 0.3),
-      0 24px 60px rgba(51, 136, 255, 0.2);
-  }
-  
-  50% {
-    transform: translateY(-12px);
-    box-shadow: 
-      0 12px 28px rgba(51, 136, 255, 0.5),
-      0 24px 56px rgba(51, 136, 255, 0.4),
-      0 36px 84px rgba(51, 136, 255, 0.3);
-  }
-  
-  75% {
-    transform: translateY(-8px);
-    box-shadow: 
-      0 8px 20px rgba(51, 136, 255, 0.4),
-      0 16px 40px rgba(51, 136, 255, 0.3),
-      0 24px 60px rgba(51, 136, 255, 0.2);
-  }
-  
-  100% {
-    transform: translateY(0);
-    box-shadow: 
-      0 4px 12px rgba(51, 136, 255, 0.3),
-      0 8px 24px rgba(51, 136, 255, 0.2);
-  }
-}
-
         .features__icon, .security__icon, .cta__icon {
             background: rgba(51, 136, 255, 0.13);
         }
@@ -149,7 +109,7 @@ body[data-theme="melbet"] {
 
     .btn  { 
         span {
-        box-shadow: 0 10px 30px -10px rgba(255, 152, 0, 0.40);
+            box-shadow: 0 10px 30px -10px rgba(255, 152, 0, 0.40);
         }
     }
 
@@ -214,50 +174,14 @@ body[data-theme="melbet"] {
     }
     .beam-4 {
             background: radial-gradient(   ellipse at center,
-        rgba(255, 152, 0, 0.8) 0%,
-        rgba(255, 152, 0, 0.6) 15%,
-        rgba(255, 152, 0, 0.4) 30%,
-        rgba(255, 152, 0, 0.2) 45%,
-        transparent 60%
-    );
+            rgba(255, 152, 0, 0.8) 0%,
+            rgba(255, 152, 0, 0.6) 15%,
+            rgba(255, 152, 0, 0.4) 30%,
+            rgba(255, 152, 0, 0.2) 45%,
+            transparent 60%
+        );
     }
-
-
-    @keyframes floatPulse {
-  0% {
-    transform: translateY(0);
-    box-shadow: 
-      0 4px 12px rgba(255, 152, 0, 0.3),
-      0 8px 24px rgba(255, 152, 0, 0.2);
-  }  
-  25% {
-    transform: translateY(-8px);
-    box-shadow: 
-      0 8px 20px rgba(255, 152, 0, 0.4),
-      0 16px 40px rgba(255, 152, 0, 0.3),
-      0 24px 60px rgba(255, 152, 0, 0.2);
-  }  
-  50% {
-    transform: translateY(-12px);
-    box-shadow: 
-      0 12px 28px rgba(255, 152, 0, 0.5),
-      0 24px 56px rgba(255, 152, 0, 0.4),
-      0 36px 84px rgba(255, 152, 0, 0.3);
-  }  
-  75% {
-    transform: translateY(-8px);
-    box-shadow: 
-      0 8px 20px rgba(255, 152, 0, 0.4),
-      0 16px 40px rgba(255, 152, 0, 0.3),
-      0 24px 60px rgba(255, 152, 0, 0.2);
-  }  
-  100% {
-    transform: translateY(0);
-    box-shadow: 
-      0 4px 12px rgba(255, 152, 0, 0.3),
-      0 8px 24px rgba(255, 152, 0, 0.2);
-  }
-}       
+     
        .features__icon, .security__icon, .cta__icon {
             background: rgba(245, 196, 0, 0.13);
         }
