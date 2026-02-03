@@ -1,4 +1,4 @@
-body[data-theme="1xbet"] {
+html[data-theme="1xbet"] {
         
     background: #021A35;
     --main-color: #38F;
@@ -79,7 +79,7 @@ body[data-theme="1xbet"] {
         );
     }
 
-        .features__icon, .security__icon, .cta__icon {
+        .features__icon, .security__icon {
             background: rgba(51, 136, 255, 0.13);
         }
     .comparison__td:last-child:before {
@@ -101,7 +101,7 @@ body[data-theme="1xbet"] {
     }
 }
 
-body[data-theme="melbet"] {
+html[data-theme="melbet"] {
         
     background: #000;
     --main-color: #F5C400;
@@ -182,7 +182,7 @@ body[data-theme="melbet"] {
         );
     }
      
-       .features__icon, .security__icon, .cta__icon {
+       .features__icon, .security__icon {
             background: rgba(245, 196, 0, 0.13);
         }
 

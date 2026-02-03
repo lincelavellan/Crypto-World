@@ -251,6 +251,7 @@
         animation: floatPulse1xbet 3s ease-in-out infinite;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         transition: all .3s ease;
+        z-index: 999;
 
           &:hover {
                 background: linear-gradient(135deg, var(--main-color) 0%, var(--second-color) 100%); 

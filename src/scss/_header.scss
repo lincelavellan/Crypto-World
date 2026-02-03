@@ -1,7 +1,8 @@
 header {
-  position: fixed;
-  width: 100vw;
-  top: 0;
+ position: fixed !important;
+  top: 0 !important;
+  transform: none !important;
+  width: 100vw !important;
   padding: 28px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(0, 0, 0, 0.20);
@@ -23,6 +24,10 @@ header {
          display: flex;
           align-items: center;
           gap: 32px;
+
+          @media (max-width: 1280px) and (min-width: 767px) {
+            gap: 2.8vw;
+          }
 
           a.nav-item {
             color: rgba(255, 255, 255, 0.70);
@@ -50,9 +55,11 @@ header {
           align-items: center;
           cursor: pointer;
           gap: 8px;
+          padding-top: 0;
 
           i {
             transition: all .3s ease;
+            height: 22px;
           }
         }
 
@@ -130,7 +137,28 @@ header {
           transform: rotate(180deg);
         }
       }
-  }   
+  } 
+  
+  &__nav-link {
+    display: none;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 100%;
+    background: rgba(255, 255, 255, 0.10);
+
+    .close-nav {
+      display: none;
+    }
+
+     svg path {
+            stroke: var(--main-color);
+        }
+  }
 }
 
 .progress-container {

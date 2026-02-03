@@ -1,21 +1,45 @@
 
 import { i18n } from './i18n/index.js'
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+const favicon = document.querySelector('#favicon');
+
+function updateFavicon() {
+    const theme = document.documentElement.dataset.theme; // или body.dataset.theme
+
+    if (theme === 'melbet') {
+        favicon.href = 'images/favicon-melbet.png';
+    } else {
+        favicon.href = 'images/favicon-1xbet.png';
+    }
+}
+
+updateFavicon();
+
+
+const header = document.querySelector('.header');
+
+document.querySelectorAll('.header a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
-        const target = document.querySelector(anchor.getAttribute('href'))
-        if (!target) return
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) return;
 
-        e.preventDefault()
+        e.preventDefault();
 
+        // плавный скролл
         target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
-        })
-    })
-})
+        });
 
+        // закрыть меню хедера
+        header.classList.remove('header--nav-open');
+    });
+});
 
+const navLink = document.querySelector('.header__nav-link');
+navLink.addEventListener('click', () => {
+    header.classList.toggle('header--nav-open');
+});
 
 const body = document.body
 const switcher = document.getElementById('langSwitcher')
